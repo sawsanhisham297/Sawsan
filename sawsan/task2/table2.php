@@ -17,10 +17,10 @@ $users = [
             'gender' => 'm'
         ],
         'hobbies' => [
-            'football', 'swimming', 'running'
+            'football', 'swimming', 'm'
         ],
         'activities' => [
-            "school" => 'drawing',
+            "school" => 'm',
             'home' => 'painting'
         ], 
         
@@ -110,15 +110,6 @@ $users = [
 
 
 $numOfRows=count($users);
-//echo $numOfRows .'<br>';
-// $numOfCoulms=count($users[0]);
-// echo $numOfCoulms .'<br>';
-// $x=0;
-// foreach($users[0] as $property2 => $value2) { 
-//     $x ++;
-// } 
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -137,133 +128,74 @@ $numOfRows=count($users);
 
 
 
-    <!-- #####################################################3 -->
+    <div class="contianer">
+        <div class="row m-auto">
 
-      <div class="contianer">
-          <div class="row m-auto">
+        <table class="table table-striped">
+        <thead>
+            <tr>
 
-          <table class="table table-striped">
-  <thead>
-    <tr>
+            <tr>
 
-    <!-- #####################3 -->
+                <?php foreach($users[0] as $propertyOfUserss => $propertyOfUsersInner) { ?>
+                <th><?= $propertyOfUserss ?></td>
 
-    
-    <!-- </*?php foreach($users[0]as $property => $value){ ?>
-    <th scope="col"></*?$property ?></th>
-    
-   </*?php } ?> -->
+                <?php } ?>   
+            </tr>س
 
-
-       <?php foreach($users[0]as $property => $value) 
-      echo $property .'<br>';
-    ?>
+            </tr>
+            </thead>
 
 
-
-    <tr>
-
-    <?php foreach($users[0] as $property2 => $value2) { ?>
-      <th><?= $property2 ?></td>
-
-      <?php } ?>
-     
-    </tr>
+        <tbody>
 
 
-    
-  
+                <?php for($i=0;$i<$numOfRows;$i++) { ?>
+            <tr>
 
-<!-- ########################################33 -->
-    
-
-
-    <!-- $users[0]->id -->
-    
+                <?php foreach($users[$i] as $propertyOfUsers => $valueInEachproperty) { 
 
 
+                $ttype=gettype($valueInEachproperty);
+                if($ttype== 'object' || $ttype=='array') 
+                {
+                foreach( $valueInEachproperty as $propertyOfValueInEachproperty => $innerInnerValue){
 
-    </tr>
-  </thead>
+                if($propertyOfUsers=='gender'&&$innerInnerValue=='m') 
+                $finall = 'male';
 
-  <!-- ####################################### -->
-  <tbody>
+                elseif($propertyOfUsers=='gender'&&$innerInnerValue=='f')
+                $finall = 'female';
 
+                elseif($propertyOfUsers!='gender' ){
+                $finall .= $innerInnerValue .=' ';
+                                                                    }
+                                                                }
+                }
 
-    </tr> 
+                else{
+                $finall=$valueInEachproperty;
+                }
 
-<?php for($i=0;$i<$numOfRows;$i++) { ?>
-    <tr>
+                    ?>
 
-    <?php foreach($users[$i] as $property2 => $value2) { 
-
-        // if($property2=='id')
-        // $final=$value2;
-        //  else if($property2 == 'name')
-        // $final=$value2;
-
-        //  else if($property2 == 'gender'){
-        //     if(($users[0]-> gender)=='m')
-        //     $final=='male';
-        //     else {
-        //     $final=='female';
-        //     }
-        // }
-        // foreach( $users[$i]->[$propert2] as $property33 => $value33) {
-                
-        //     $final=$value33;
-               
-       // foreach($users[$i]$property2  as $propertyyy => $value3)
-          $ttype=gettype($value2);
-       if($ttype== 'object' || $ttype=='array') 
-       {
-         foreach( $value2 as $propertyyy => $value333){
-
-           if($value333=='m') 
-           $finall = 'male';
-
-           elseif($value333=='f')
-           $finall = 'female';
-
-           elseif($value333 !='m' && $value333 !='f' ){
-            $finall .= $value333 .=' ';
-           }
-
-         
-
-         }
-        }
-
-        else{
-            $finall=$value2;
-        }
-
-        
-        
-        ?>
       <td><?=$finall ?></td>
 
-
-
-      <?php  $finall=''; }} ?>
+    <?php  $finall=''; }} ?>
      
-    </tr>
+            </tr>
 
     <?php  ?>
   
-   
-  </tbody>
-</table>
+            </tbody>
+            </table>
 
           
-          </div>
+        </div>
 
-      </div>
+    </div>
 
-    
-
-
-
+ 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
